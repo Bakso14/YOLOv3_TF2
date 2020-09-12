@@ -10,16 +10,16 @@ assert len(physical_devices) > 0, "Not enough GPU hardware devices available"
 tf.config.experimental.set_memory_growth(physical_devices[0], True)
 
 model_size = (416, 416,3)
-num_classes = 80
-class_name = './data/coco.names'
+num_classes = 1
+class_name = './data/yolo.names'
 max_output_size = 40
 max_output_size_per_class= 20
 iou_threshold = 0.5
 confidence_threshold = 0.5
 
-cfgfile = 'cfg/yolov3.cfg'
-weightfile = 'weights/yolov3_weights.tf'
-img_path = "data/images/test.jpg"
+cfgfile = 'cfg/yolov3_custom_train.cfg'
+weightfile = 'weights/yolov3_weights_2000.tf'
+img_path = "data/images/video_1_ 01.jpg"
 
 def main():
 
