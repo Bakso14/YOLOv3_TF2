@@ -9,16 +9,16 @@ assert len(physical_devices) > 0, "Not enough GPU hardware devices available"
 tf.config.experimental.set_memory_growth(physical_devices[0], True)
 
 model_size = (416, 416,3)
-num_classes = 80
-class_name = './data/coco.names'
+num_classes = 1
+class_name = './data/YOLO.names'
 max_output_size = 100
 max_output_size_per_class= 20
 iou_threshold = 0.5
 confidence_threshold = 0.5
 
 
-cfgfile = 'cfg/yolov3.cfg'
-weightfile = 'weights/yolov3_weights.tf'
+cfgfile = 'cfg/yolov3_custom_train.cfg'
+weightfile = 'weights/yolov3_weights_2000.tf'
 
 def main():
 
@@ -36,7 +36,7 @@ def main():
     #specify the vidoe input.
     # 0 means input from cam 0.
     # For vidio, just change the 0 to video path
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture('data/images/Manyar.mp4')
     frame_size = (cap.get(cv2.CAP_PROP_FRAME_WIDTH),
                   cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
