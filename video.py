@@ -39,6 +39,12 @@ def main():
     cap = cv2.VideoCapture('data/images/Manyar.mp4')
     frame_size = (cap.get(cv2.CAP_PROP_FRAME_WIDTH),
                   cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    
+    number_frame = 30.0 #higher frames better quality of the video
+    video_size = (1280,720)
+    fourcc = cv2.VideoWriter_fourcc(*'DIVX')
+    out = cv2.VideoWriter('hasil_manyar.mp4',fourcc, number_frame,video_size)
+
 
     try:
         while True:
@@ -60,8 +66,10 @@ def main():
                 confidence_threshold=confidence_threshold)
 
             img = draw_outputs(frame, boxes, scores, classes, nums, class_names)
-            cv2.imshow(win_name, img)
-
+            #cv2.imshow(win_name, img)
+            
+            out.write(img)
+            
             stop = time.time()
 
             seconds = stop - start
